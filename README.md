@@ -50,9 +50,9 @@ This AI agent application allows users to automate the process of gathering spec
   auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs,
   client_x509_cert_url: <YOUR_CLIENT_X509_CERT_URL>
 
-  To know more about how we could setup an access to a google sheet link,
-  I would highly recommend you to go through the following medium post on the same:
-  [How to Get Credentials for Google Sheets](https://medium.com/@a.marenkov/how-to-get-credentials-for-google-sheets-456b7e88c430)
+- To know more about how we could setup an access to a google sheet link,
+- I would highly recommend you to go through the following medium post on the same:
+- [How to Get Credentials for Google Sheets](https://medium.com/@a.marenkov/how-to-get-credentials-for-google-sheets-456b7e88c430)
 
 
 
