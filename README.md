@@ -15,8 +15,10 @@ This AI agent application allows users to automate the process of gathering spec
 ### Prerequisites
 - **Python**: Version 3.8 or higher
 - **API keys**:
-  - A search API key (e.g., SerpAPI or ScraperAPI) to perform web searches.
-  - An LLM API key (e.g., OpenAI GPT API) for parsing and extracting information.
+  - A search API key (SerpAPI ) to perform web searches.
+  - An LLM API key (OpenAI GPT API or ChatGroq) for parsing and extracting information.
+- **Libraries to import**:
+  - I have listed all the required libraries for my application in the requirements.txt file.
 
 ### Installation
 1. **Clone the Repository**:
@@ -27,7 +29,7 @@ This AI agent application allows users to automate the process of gathering spec
 
 1. **Create a .env file**  
    Create a `.env` file in the root directory of your project.
-
+   I have also attached the .env for better understanding as well
 2. **Add your API keys**  
    Add your API keys to the `.env` file in the following format:
    ```env
@@ -47,6 +49,11 @@ This AI agent application allows users to automate the process of gathering spec
   token_uri: https://oauth2.googleapis.com/token,
   auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs,
   client_x509_cert_url: <YOUR_CLIENT_X509_CERT_URL>
+
+  To know more about how we could setup an access to a google sheet link,
+  I would highly recommend you to go through the following medium post on the same:
+  [How to Get Credentials for Google Sheets](https://medium.com/@a.marenkov/how-to-get-credentials-for-google-sheets-456b7e88c430)
+
 
 
 ## Step-by-Step Guide to Using the AI Agent
