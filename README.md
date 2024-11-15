@@ -60,16 +60,26 @@ This AI agent application allows users to automate the process of gathering spec
 
 ### 1. Upload Data
 - **Choose a Data Source**: Upload a CSV file containing the entities for information retrieval or connect a Google Sheet.
+
+  ![image](https://github.com/user-attachments/assets/59f5b241-5336-4521-ad23-c2d62f086b7b)
+
 - **Data Preview**: Once uploaded, a preview of the data will be displayed, allowing you to verify the contents.
+
+  ![image](https://github.com/user-attachments/assets/8e6af325-2281-4fbc-8cf0-45f1efcc30c1)
+
 
 ### 2. Select the Main Column
 - **Define the Entity Column**: Use the dropdown menu to select the column that contains the entities you are interested in (e.g., "company names"). This will serve as the main focus for the searches.
+
+  ![image](https://github.com/user-attachments/assets/7135d357-c1fa-48d4-bcda-c864858ec84a)
 
 ### 3. Enter a Prompt for Data Retrieval
 - **Customizable Prompt**: In the input box, type a prompt that specifies the type of information you want to extract. For instance:
   - `"Retrieve the email address for {company}"`
   - `"Find the headquarters location of {company}"`
 - **Placeholders**: Use `{entity}` in the prompt to dynamically replace each entity in your chosen column during searches.
+
+![image](https://github.com/user-attachments/assets/78a2e788-3937-4939-b943-b5c2be242951)
 
 ### 4. Start the Web Search Process
 - **Automated Search**: Click the "Start Search" button to initiate a search for each entity.
@@ -83,6 +93,8 @@ This AI agent application allows users to automate the process of gathering spec
 - **Data Preview**: View the extracted results on the dashboard, where each entity and its related information (e.g., email, address) is displayed in the table.
 - **Download Options**: Download the results as a CSV file or update the connected Google Sheet with the extracted information.
 
+![image](https://github.com/user-attachments/assets/c8b4a909-7711-4abd-8a19-4bb7c297b8c2)
+
 ---
 
 ## API Integration Details
@@ -94,8 +106,11 @@ This AI agent application allows users to automate the process of gathering spec
 1. **Multi-field Extraction**  
    I have customized the prompts to retrieve multiple pieces of information at once. For example, the prompt "Get the email and address for {company}" efficiently extracts both the email and address data.
 
+
 2. **Direct Google Sheets Output**  
    I have integrated a feature that allows the extracted data to be written directly to Google Sheets. This ensures a seamless process for transferring and updating data in real-time.
+![image](https://github.com/user-attachments/assets/73b751bd-dcfb-455e-be17-76df7018f44f)
+
 
 3. **Advanced Error Handling**  
    I have implemented advanced error handling mechanisms to manage failed API calls or extraction errors. In case of an error, fallback mechanisms are triggered, and users are notified promptly to ensure smooth operation.
