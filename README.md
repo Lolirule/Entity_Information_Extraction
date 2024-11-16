@@ -109,14 +109,20 @@ This AI agent application allows users to automate the process of gathering spec
 
 2. **Direct Google Sheets Output**  
    I have integrated a feature that allows the extracted data to be written directly to Google Sheets. This ensures a seamless process for transferring and updating data in real-time.
+   
     ![image](https://github.com/user-attachments/assets/8c44abeb-489a-4c55-bf15-1a36a63517cf)
+
    
   - Below is the Google sheet I have used:
+    
 
     ![image](https://github.com/user-attachments/assets/b141463c-27be-40d9-93b3-1063a8ae126b)
 
+
   - Information Extraction:
+    
      ![image](https://github.com/user-attachments/assets/dbe734d0-f569-41f5-b4ca-bc1a8a8e2dc0)
+
 
   - Updated Google Sheet:
 
