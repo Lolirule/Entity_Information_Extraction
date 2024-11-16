@@ -40,32 +40,94 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 class DynamicPromptAgent:
+    # def __init__(self, serp_api_key: str, groq_api_key: str):
+    #     try:
+    #         logger.info("Initializing DynamicPromptAgent...")
+    #         self.serp_api_key = serp_api_key
+    #         self.groq_client = Groq(api_key=groq_api_key)
+    #         self.groq_llm = ChatGroq(api_key=groq_api_key, model_name="llama3-8b-8192")
+    #         self.tools = load_tools(["serpapi"], serpapi_api_key=self.serp_api_key)
+            
+    #         self.agent = initialize_agent(
+    #             tools=self.tools,
+    #             llm=self.groq_llm,
+    #             agent_type="self-ask-with-search",
+    #             verbose=True
+    #         )
+    #         logger.info("DynamicPromptAgent initialized successfully")
+    #     except Exception as e:
+    #         logger.error(f"Error initializing DynamicPromptAgent: {str(e)}")
+    #         raise
+    
     def __init__(self, serp_api_key: str, groq_api_key: str):
         try:
             logger.info("Initializing DynamicPromptAgent...")
             self.serp_api_key = serp_api_key
-            self.groq_client = Groq(api_key=groq_api_key)
-            self.groq_llm = ChatGroq(api_key=groq_api_key, model_name="llama3-8b-8192")
-            self.tools = load_tools(["serpapi"], serpapi_api_key=self.serp_api_key)
             
-            self.agent = initialize_agent(
-                tools=self.tools,
-                llm=self.groq_llm,
-                agent_type="self-ask-with-search",
-                verbose=True
-            )
+            # Initialize Groq client with error handling
+            self.groq_client = self.initialize_groq_client(groq_api_key)
+            
+            # Initialize ChatGroq LLM with error handling
+            self.groq_llm = self.initialize_chat_groq(groq_api_key, model_name="llama3-8b-8192")
+            
+            # Load tools with error handling
+            self.tools = self.load_tools(self.serp_api_key)
+            
+            # Initialize agent
+            self.agent = self.initialize_agent(self.tools, self.groq_llm)
+            
             logger.info("DynamicPromptAgent initialized successfully")
         except Exception as e:
             logger.error(f"Error initializing DynamicPromptAgent: {str(e)}")
             raise
 
+    def initialize_groq_client(self, groq_api_key: str):
+        """Initialize Groq client with error handling."""
+        try:
+            logger.info("Initializing Groq client...")
+            return Groq(api_key=groq_api_key)
+        except Exception as e:
+            logger.error(f"Failed to initialize Groq client: {str(e)}")
+            raise RuntimeError("Error initializing Groq client.") from e
+
+    def initialize_chat_groq(self, groq_api_key: str, model_name: str):
+        """Initialize ChatGroq LLM with error handling."""
+        try:
+            logger.info(f"Initializing ChatGroq LLM with model: {model_name}...")
+            return ChatGroq(api_key=groq_api_key, model_name=model_name)
+        except Exception as e:
+            logger.error(f"Failed to initialize ChatGroq LLM: {str(e)}")
+            raise RuntimeError("Error initializing ChatGroq LLM.") from e
+
+    def load_tools(self, serp_api_key: str):
+        """Load tools with error handling."""
+        try:
+            logger.info("Loading tools...")
+            return load_tools(["serpapi"], serpapi_api_key=serp_api_key)
+        except Exception as e:
+            logger.error(f"Failed to load tools: {str(e)}")
+            raise RuntimeError("Error loading tools.") from e
+
+    def initialize_agent(self, tools, groq_llm):
+        """Initialize the agent with error handling."""
+        try:
+            logger.info("Initializing the agent...")
+            return initialize_agent(
+                tools=tools,
+                llm=groq_llm,
+                agent_type="self-ask-with-search",
+                verbose=True
+            )
+        except Exception as e:
+            logger.error(f"Failed to initialize agent: {str(e)}")
+            raise RuntimeError("Error initializing agent.") from e
     def process_with_groq(self, prompt: str) -> str:
         """
         Process text using Groq's LLaMA 3 model.
         """
         structured_prompt = f"""
-        You are a general information extraction assistant. Your task is to extract information about the entity mentioned in the prompt.
-
+        You are a general information extraction assistant. Your task is to extract information about the entity mentioned in the prompt and nothing irrelevant must be extracted.
+        try to get as specific information as you can but don't narrow down your search.Try searching from multiple websearches to get the most relevant information.
         PROMPT: {prompt}
 
         Rules:
@@ -314,7 +376,7 @@ def main():
         st.dataframe(df.head(10))
 
         # selected_column = st.selectbox("Select a column:", options=st.session_state.data.columns)
-        st.markdown("<h3 style='font-size:24px;'>Select a column to view:</h3>", unsafe_allow_html=True)
+        st.markdown("<h3 style='font-size:24px;'>Select a column to view and process:</h3>", unsafe_allow_html=True)
         selected_column = st.radio("", options=st.session_state.data.columns, index=0)
         
         # Initialize session state to track "Show Column Contents" visibility
@@ -339,45 +401,107 @@ def main():
             st.session_state.show_template_info = False
 
         # Button to show/hide template info
-        if st.button("Submit Template Prompt"):
+        if st.button("Start Search"):
             st.session_state.show_template_info = True  # Set to True when button is pressed
 
-        # Display template prompt information if `show_template_info` is True
+        # Perform information extraction if template info is ready
         if st.session_state.show_template_info:
-            
-            agent = DynamicPromptAgent(
-                serp_api_key=serp_api_key,
-                groq_api_key=groq_api_key
-            )
+            st.subheader("Information Extraction in Progress...")
 
-            entities = st.session_state.data[selected_column].dropna().unique()
-            
-            results = []
-            for entity_name in entities:
-                entity = {selected_column: entity_name}
-                result = agent.execute_workflow(template_prompt, entity, selected_column)
-                results.append(result)
-            # Display results in tabular format
+            # Check if agent results are already available in session state
+            if 'results_df' not in st.session_state:
+                try:
+                    # Initialize the agent
+                    agent = DynamicPromptAgent(
+                        serp_api_key=serp_api_key,
+                        groq_api_key=groq_api_key
+                    )
+
+                    # Extract unique entities
+                    entities = st.session_state.data[selected_column].dropna().unique()
+                    results = []
+
+                    # Execute the workflow for each entity
+                    for entity_name in entities:
+                        entity = {selected_column: entity_name}
+                        result = agent.execute_workflow(template_prompt, entity, selected_column)
+                        results.append(result)
+
+                    # Store results in session state
+                    st.session_state.results_df = pd.DataFrame(results)
+                except Exception as e:
+                    st.error(f"Error during information extraction: {e}")
+                    st.stop()
+
+            # Use cached results
+            results_df = st.session_state.results_df
+
+            # Display results
             st.subheader("Extracted Information")
-            results_df = pd.DataFrame(results)
             st.dataframe(results_df)
-            
+
+            # Update DataFrame with a new column
+            column_name = f"Extracted Data from {selected_column}"
             df[column_name] = results_df['data']
-            st.subheader("Data updated in the CSV file\nYou may download the updated csv file")
+            st.subheader("Data updated in the CSV file")
             st.write(df)
 
+            # Handle Google Sheets update
             if data_source == "Google Sheets":
-                edit_choice = st.selectbox("Would you like to add the extracted data to your original data source?\n NOTE:Adding this data to Google Sheets will make permanent changes. Do you want to proceed?", ["Select", "Yes", "No"])
-                # Add the extracted data as a new column to the original data source
-                if edit_choice == "Yes" :
-                    if 'data' in results_df.columns:
-                        new_column_series = results_df['data']
-                        # Add new column to Google Sheet
+                if 'google_sheet_updated' not in st.session_state:
+                    st.session_state.google_sheet_updated = False
+
+                confirm_update = st.checkbox("Confirm Google Sheets Update")
+                if confirm_update:
+                    if not st.session_state.google_sheet_updated:
                         try:
+                            # Add new column to Google Sheets
+                            new_column_series = results_df['data']
                             data_manager.add_column_google_sheet(sheet_url, new_column_series, column_name)
-                            st.success("New column added to Google Sheet successfully.")
-                        except:
-                            print("Give access level for editing")
+                            st.session_state.google_sheet_updated = True
+                            st.success("Google Sheets updated successfully.")
+                        except Exception as e:
+                            st.error(f"Error: {e}")
+                    else:
+                        st.info("Google Sheets has already been updated.")
+
+        # # Display template prompt information if `show_template_info` is True
+        # if st.session_state.show_template_info:
+            
+        #     agent = DynamicPromptAgent(
+        #         serp_api_key=serp_api_key,
+        #         groq_api_key=groq_api_key
+        #     )
+
+        #     entities = st.session_state.data[selected_column].dropna().unique()
+            
+        #     results = []
+        #     for entity_name in entities:
+        #         entity = {selected_column: entity_name}
+        #         result = agent.execute_workflow(template_prompt, entity, selected_column)
+        #         results.append(result)
+        #     # Display results in tabular format
+        #     st.subheader("Extracted Information")
+        #     results_df = pd.DataFrame(results)
+        #     st.dataframe(results_df)
+            
+        #     df[column_name] = results_df['data']
+        #     st.subheader("Data updated in the CSV file\nYou may download the updated csv file")
+        #     st.write(df)
+
+        #     if data_source == "Google Sheets":
+        #         edit_choice = st.selectbox("Would you like to add the extracted data to your original data source?\n NOTE:Adding this data to Google Sheets will make permanent changes. Do you want to proceed?", ["Select", "Yes", "No"])
+        #         # Add the extracted data as a new column to the original data source
+        #         if edit_choice == "Yes" :
+        #             if 'data' in results_df.columns:
+        #                 new_column_series = results_df['data']
+        #                 # Add new column to Google Sheet
+        #                 try:
+        #                     data_manager.add_column_google_sheet(sheet_url, new_column_series, column_name)
+        #                     st.success("New column added to Google Sheet successfully.")
+        #                 except:
+        #                     print("Give access level for editing")
+
 
 if __name__ == "__main__":
     main()
