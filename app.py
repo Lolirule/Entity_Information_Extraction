@@ -40,25 +40,6 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 class DynamicPromptAgent:
-    # def __init__(self, serp_api_key: str, groq_api_key: str):
-    #     try:
-    #         logger.info("Initializing DynamicPromptAgent...")
-    #         self.serp_api_key = serp_api_key
-    #         self.groq_client = Groq(api_key=groq_api_key)
-    #         self.groq_llm = ChatGroq(api_key=groq_api_key, model_name="llama3-8b-8192")
-    #         self.tools = load_tools(["serpapi"], serpapi_api_key=self.serp_api_key)
-            
-    #         self.agent = initialize_agent(
-    #             tools=self.tools,
-    #             llm=self.groq_llm,
-    #             agent_type="self-ask-with-search",
-    #             verbose=True
-    #         )
-    #         logger.info("DynamicPromptAgent initialized successfully")
-    #     except Exception as e:
-    #         logger.error(f"Error initializing DynamicPromptAgent: {str(e)}")
-    #         raise
-    
     def __init__(self, serp_api_key: str, groq_api_key: str):
         try:
             logger.info("Initializing DynamicPromptAgent...")
@@ -464,44 +445,6 @@ def main():
                             st.error(f"Error: {e}")
                     else:
                         st.info("Google Sheets has already been updated.")
-
-        # # Display template prompt information if `show_template_info` is True
-        # if st.session_state.show_template_info:
-            
-        #     agent = DynamicPromptAgent(
-        #         serp_api_key=serp_api_key,
-        #         groq_api_key=groq_api_key
-        #     )
-
-        #     entities = st.session_state.data[selected_column].dropna().unique()
-            
-        #     results = []
-        #     for entity_name in entities:
-        #         entity = {selected_column: entity_name}
-        #         result = agent.execute_workflow(template_prompt, entity, selected_column)
-        #         results.append(result)
-        #     # Display results in tabular format
-        #     st.subheader("Extracted Information")
-        #     results_df = pd.DataFrame(results)
-        #     st.dataframe(results_df)
-            
-        #     df[column_name] = results_df['data']
-        #     st.subheader("Data updated in the CSV file\nYou may download the updated csv file")
-        #     st.write(df)
-
-        #     if data_source == "Google Sheets":
-        #         edit_choice = st.selectbox("Would you like to add the extracted data to your original data source?\n NOTE:Adding this data to Google Sheets will make permanent changes. Do you want to proceed?", ["Select", "Yes", "No"])
-        #         # Add the extracted data as a new column to the original data source
-        #         if edit_choice == "Yes" :
-        #             if 'data' in results_df.columns:
-        #                 new_column_series = results_df['data']
-        #                 # Add new column to Google Sheet
-        #                 try:
-        #                     data_manager.add_column_google_sheet(sheet_url, new_column_series, column_name)
-        #                     st.success("New column added to Google Sheet successfully.")
-        #                 except:
-        #                     print("Give access level for editing")
-
 
 if __name__ == "__main__":
     main()
