@@ -38,7 +38,7 @@ This AI agent application allows users to automate the process of gathering spec
 
 3 **Add the Google Credentials for direct access to Google Sheets(optional)**
   Add the google credentials to the `.env` file in the following format:
-  ```env
+  env
   type: service_account,
   project_id: <YOUR_PROJECT_ID>,
   private_key_id: <YOUR_PRIVATE_KEY_ID>,
