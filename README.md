@@ -39,19 +39,18 @@ This AI agent application allows users to automate the process of gathering spec
 3 **Add the Google Credentials for direct access to Google Sheets(optional)**
   Add the google credentials to the `.env` file in the following format:
   env
-  type: service_account,
-  project_id: <YOUR_PROJECT_ID>,
-  private_key_id: <YOUR_PRIVATE_KEY_ID>,
-  private_key: <YOUR_PRIVATE_KEY>,
-  client_email: <YOUR_CLIENT_EMAIL>,
-  client_id: <YOUR_CLIENT_ID>,
-  auth_uri: https://accounts.google.com/o/oauth2/auth,
-  token_uri: https://oauth2.googleapis.com/token,
-  auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs,
-  client_x509_cert_url: <YOUR_CLIENT_X509_CERT_URL>
+  - type: service_account,
+  - project_id: <YOUR_PROJECT_ID>,
+  - private_key_id: <YOUR_PRIVATE_KEY_ID>,
+  - private_key: <YOUR_PRIVATE_KEY>,
+  - client_email: <YOUR_CLIENT_EMAIL>,
+  - client_id: <YOUR_CLIENT_ID>,
+  - auth_uri: https://accounts.google.com/o/oauth2/auth,
+  - token_uri: https://oauth2.googleapis.com/token,
+  - auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs,
+  - client_x509_cert_url: <YOUR_CLIENT_X509_CERT_URL>
 
-- To know more about how we could setup an access to a google sheet link,
-- I would highly recommend you to go through the following medium post on the same:
+- To know more about setting up an access to a google sheet link,I would recommend you to go through the following medium post on the same:
 - [How to Get Credentials for Google Sheets](https://medium.com/@a.marenkov/how-to-get-credentials-for-google-sheets-456b7e88c430)
 
 
@@ -61,25 +60,24 @@ This AI agent application allows users to automate the process of gathering spec
 ### 1. Upload Data
 - **Choose a Data Source**: Upload a CSV file containing the entities for information retrieval or connect a Google Sheet.
 
-  ![image](https://github.com/user-attachments/assets/59f5b241-5336-4521-ad23-c2d62f086b7b)
+  ![image](https://github.com/user-attachments/assets/787ac6ca-06b5-47fb-8fef-e83c636b96ce)
 
 - **Data Preview**: Once uploaded, a preview of the data will be displayed, allowing you to verify the contents.
 
-  ![image](https://github.com/user-attachments/assets/8e6af325-2281-4fbc-8cf0-45f1efcc30c1)
+  ![image](https://github.com/user-attachments/assets/0a421240-b8d9-4c39-ba64-190f5b2e8fc7)
 
 
 ### 2. Select the Main Column
 - **Define the Entity Column**: Use the dropdown menu to select the column that contains the entities you are interested in (e.g., "company names"). This will serve as the main focus for the searches.
 
-  ![image](https://github.com/user-attachments/assets/7135d357-c1fa-48d4-bcda-c864858ec84a)
+  ![image](https://github.com/user-attachments/assets/e2192a49-937b-4565-8e88-4d5798b3c076)
+
 
 ### 3. Enter a Prompt for Data Retrieval
 - **Customizable Prompt**: In the input box, type a prompt that specifies the type of information you want to extract. For instance:
   - `"Retrieve the email address for {company}"`
   - `"Find the headquarters location of {company}"`
 - **Placeholders**: Use `{entity}` in the prompt to dynamically replace each entity in your chosen column during searches.
-
-![image](https://github.com/user-attachments/assets/78a2e788-3937-4939-b943-b5c2be242951)
 
 ### 4. Start the Web Search Process
 - **Automated Search**: Click the "Start Search" button to initiate a search for each entity.
@@ -88,6 +86,9 @@ This AI agent application allows users to automate the process of gathering spec
 ### 5. Information Extraction via LLM
 - **Data Parsing**: The application sends search results to the LLM, which then extracts the specified information according to your prompt.
 - **Structured Data Output**: Extracted information is displayed in a structured, tabular format on the dashboard for easy viewing.
+
+  ![image](https://github.com/user-attachments/assets/e02ceb08-cef1-43ce-980e-0ba4e9e025a6)
+
 
 ### 6. View and Export Results
 - **Data Preview**: View the extracted results on the dashboard, where each entity and its related information (e.g., email, address) is displayed in the table.
@@ -99,17 +100,28 @@ This AI agent application allows users to automate the process of gathering spec
 
 ## API Integration Details
 - **Search API**: The search API serpAPi is used to retrieve relevant URLs and snippets for each entity.
-- **LLM API**: The LLM API processes the search results and extracts specific information as defined by the prompt.
+- **LLM API**: Chat Groq processes the search results and extracts specific information as defined by the prompt.
 
 ## Additional Integrated Features
 
 1. **Multi-field Extraction**  
-   I have customized the prompts to retrieve multiple pieces of information at once. For example, the prompt "Get the email and address for {company}" efficiently extracts both the email and address data.
+   I have customized the prompts to retrieve multiple pieces of information at once. For example, the prompt "Get the email and address for {company}" efficiently e      extracts both the email and address data.
 
 
 2. **Direct Google Sheets Output**  
    I have integrated a feature that allows the extracted data to be written directly to Google Sheets. This ensures a seamless process for transferring and updating data in real-time.
-![image](https://github.com/user-attachments/assets/73b751bd-dcfb-455e-be17-76df7018f44f)
+    ![image](https://github.com/user-attachments/assets/8c44abeb-489a-4c55-bf15-1a36a63517cf)
+   
+  - Below is the Google sheet I have used:
+
+    ![image](https://github.com/user-attachments/assets/b141463c-27be-40d9-93b3-1063a8ae126b)
+
+  - Information Extraction:
+     ![image](https://github.com/user-attachments/assets/dbe734d0-f569-41f5-b4ca-bc1a8a8e2dc0)
+
+  - Updates Google Sheet:
+
+    ![image](https://github.com/user-attachments/assets/f4214b94-e377-4e0b-90c8-011f66c2a393)
 
 
 3. **Advanced Error Handling**  
