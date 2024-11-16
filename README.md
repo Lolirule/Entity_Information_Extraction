@@ -18,7 +18,7 @@ This AI agent application allows users to automate the process of gathering spec
   - A search API key (SerpAPI ) to perform web searches.
   - An LLM API key (OpenAI GPT API or ChatGroq) for parsing and extracting information.
 - **Libraries to import**:
-  - I have listed all the required libraries for my application in the requirements.txt file.
+  - All The required libraries for my application are listed in the requirements.txt file.
 
 ### Installation
 1. **Clone the Repository**:
@@ -29,7 +29,7 @@ This AI agent application allows users to automate the process of gathering spec
 
 1. **Create a .env file**  
    Create a `.env` file in the root directory of your project.
-   I have also attached the .env for better understanding as well
+   The .env file has also been attached for better understanding.
 2. **Add your API keys**  
    Add your API keys to the `.env` file in the following format:
    ```env
@@ -49,7 +49,7 @@ This AI agent application allows users to automate the process of gathering spec
   - auth_provider_x509_cert_url: https://www.googleapis.com/oauth2/v1/certs,
   - client_x509_cert_url: <YOUR_CLIENT_X509_CERT_URL>
 
-- To know more about setting up an access to a google sheet link,I would recommend you to go through the following medium post on the same:
+- For more information on setting up access to a Google Sheets link, you may refer to the following Medium post:
 - [How to Get Credentials for Google Sheets](https://medium.com/@a.marenkov/how-to-get-credentials-for-google-sheets-456b7e88c430)
 
 
@@ -104,11 +104,11 @@ This AI agent application allows users to automate the process of gathering spec
 ## Additional Integrated Features
 
 1. **Multi-field Extraction**  
-   I have customized the prompts to retrieve multiple pieces of information at once. For example, the prompt "Get the email and address for {company}" efficiently e      extracts both the email and address data.
+   The prompts have been customized to retrieve multiple pieces of information at once. For example, the prompt "Get the email and address for {company}" efficiently extracts both the email and address data.
 
 
 2. **Direct Google Sheets Output**  
-   I have integrated a feature that allows the extracted data to be written directly to Google Sheets. This ensures a seamless process for transferring and updating data in real-time.
+   A feature has been integrated that allows the extracted data to be written directly to Google Sheets, ensuring a seamless process for transferring and updating data in real-time.
    
     ![image](https://github.com/user-attachments/assets/8c44abeb-489a-4c55-bf15-1a36a63517cf)
 
@@ -116,7 +116,7 @@ This AI agent application allows users to automate the process of gathering spec
   - Below is the Google sheet I have used:
     
 
-    ![image](https://github.com/user-attachments/assets/b141463c-27be-40d9-93b3-1063a8ae126b)
+     ![image](https://github.com/user-attachments/assets/b141463c-27be-40d9-93b3-1063a8ae126b)
 
 
   - Information Extraction:
@@ -128,8 +128,7 @@ This AI agent application allows users to automate the process of gathering spec
 
     ![image](https://github.com/user-attachments/assets/f4214b94-e377-4e0b-90c8-011f66c2a393)
 
-
-
 3. **Advanced Error Handling**  
-   I have implemented advanced error handling mechanisms to manage failed API calls or extraction errors. In case of an error, fallback mechanisms are triggered, and users are notified promptly to ensure smooth operation.
+   
+    Advanced error handling mechanisms have been implemented to manage failed API calls or extraction errors. In case of an error, fallback mechanisms are triggered, and users are notified promptly to ensure smooth operation.
 
