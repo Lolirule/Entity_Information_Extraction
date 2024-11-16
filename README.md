@@ -38,7 +38,6 @@ This AI agent application allows users to automate the process of gathering spec
 
 3 **Add the Google Credentials for direct access to Google Sheets(optional)**
   Add the google credentials to the `.env` file in the following format:
-  env
   - type: service_account,
   - project_id: <YOUR_PROJECT_ID>,
   - private_key_id: <YOUR_PRIVATE_KEY_ID>,
@@ -119,9 +118,10 @@ This AI agent application allows users to automate the process of gathering spec
   - Information Extraction:
      ![image](https://github.com/user-attachments/assets/dbe734d0-f569-41f5-b4ca-bc1a8a8e2dc0)
 
-  - Updates Google Sheet:
+  - Updated Google Sheet:
 
     ![image](https://github.com/user-attachments/assets/f4214b94-e377-4e0b-90c8-011f66c2a393)
+
 
 
 3. **Advanced Error Handling**  
