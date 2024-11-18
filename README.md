@@ -123,19 +123,19 @@ This AI agent application allows users to automate the process of gathering spec
 
   - Information Extraction:
     
-    ![image](https://github.com/user-attachments/assets/2e57b3ae-e870-4572-8955-80cd162dc023)
+     ![image](https://github.com/user-attachments/assets/2e57b3ae-e870-4572-8955-80cd162dc023)
 
 
     
   - Updated Google Sheet:
 
-    ![image](https://github.com/user-attachments/assets/0f106172-c590-480d-b308-e172ca81814c)
+     ![image](https://github.com/user-attachments/assets/0f106172-c590-480d-b308-e172ca81814c)
 
 
 
   - Google Sheets Updated Message:
 
-    ![image](https://github.com/user-attachments/assets/edcf734d-c429-46d4-bb5a-fe28a1acf637)
+     ![image](https://github.com/user-attachments/assets/edcf734d-c429-46d4-bb5a-fe28a1acf637)
 
 
 
@@ -143,3 +143,10 @@ This AI agent application allows users to automate the process of gathering spec
    
     Advanced error handling mechanisms have been implemented to manage failed API calls or extraction errors. In case of an error, fallback mechanisms are triggered, and users are notified promptly to ensure smooth operation.
 
+
+
+## Project Overview
+
+  - For a breif explanation and walkthrough of the project, please refer to the video below:
+   
+    https://drive.google.com/file/d/1UgErdfcGiFWJUGvJwrp-s67YxQSlvA9k/view?usp=sharing
