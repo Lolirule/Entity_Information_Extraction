@@ -59,7 +59,7 @@ This AI agent application allows users to automate the process of gathering spec
 ### 1. Upload Data
 - **Choose a Data Source**: Upload a CSV file containing the entities for information retrieval or connect a Google Sheet.
 
-  ![image](https://github.com/user-attachments/assets/787ac6ca-06b5-47fb-8fef-e83c636b96ce)
+  ![image](https://github.com/user-attachments/assets/40cdc0df-af45-473b-b7f4-ca4c33506fc9)
 
 - **Data Preview**: Once uploaded, a preview of the data will be displayed, allowing you to verify the contents.
 
