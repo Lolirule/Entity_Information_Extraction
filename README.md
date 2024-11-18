@@ -121,12 +121,17 @@ This AI agent application allows users to automate the process of gathering spec
 
   - Information Extraction:
     
-     ![image](https://github.com/user-attachments/assets/dbe734d0-f569-41f5-b4ca-bc1a8a8e2dc0)
+    ![image](https://github.com/user-attachments/assets/2e57b3ae-e870-4572-8955-80cd162dc023)
 
-
+    
   - Updated Google Sheet:
 
-    ![image](https://github.com/user-attachments/assets/2ca14a4f-bea7-4584-9c06-262491f489e4)
+    ![image](https://github.com/user-attachments/assets/e6187e6b-f488-4965-9f15-4ec0878b4490)
+
+
+  - Google Sheets Updated Message:
+
+    ![image](https://github.com/user-attachments/assets/edcf734d-c429-46d4-bb5a-fe28a1acf637)
 
 
 3. **Advanced Error Handling**  
