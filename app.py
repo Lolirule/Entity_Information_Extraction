@@ -17,12 +17,12 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 def main():
-    st.set_page_config(page_title="Data Source Interface", layout="wide")
+    st.set_page_config(page_title="AI Agent Information Retrieval", layout="wide")
     
     if 'data' not in st.session_state:
         st.session_state.data = None
 
-    st.title("Data Source Interface")
+    st.title("AI Agent Information Retriever")
     st.markdown("Choose your data source:")
 
     data_source = st.radio("Select Data Source", ["Upload CSV", "Google Sheets"], horizontal=True)
