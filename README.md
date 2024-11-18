@@ -112,6 +112,7 @@ This AI agent application allows users to automate the process of gathering spec
    
     ![image](https://github.com/user-attachments/assets/8c44abeb-489a-4c55-bf15-1a36a63517cf)
 
+
    
   - Below is the Google sheet I have used:
     
@@ -119,19 +120,23 @@ This AI agent application allows users to automate the process of gathering spec
      ![image](https://github.com/user-attachments/assets/b141463c-27be-40d9-93b3-1063a8ae126b)
 
 
+
   - Information Extraction:
     
     ![image](https://github.com/user-attachments/assets/2e57b3ae-e870-4572-8955-80cd162dc023)
 
+
     
   - Updated Google Sheet:
 
-    ![image](https://github.com/user-attachments/assets/e6187e6b-f488-4965-9f15-4ec0878b4490)
+    ![image](https://github.com/user-attachments/assets/0f106172-c590-480d-b308-e172ca81814c)
+
 
 
   - Google Sheets Updated Message:
 
     ![image](https://github.com/user-attachments/assets/edcf734d-c429-46d4-bb5a-fe28a1acf637)
+
 
 
 3. **Advanced Error Handling**  
