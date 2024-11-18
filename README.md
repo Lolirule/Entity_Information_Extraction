@@ -126,7 +126,8 @@ This AI agent application allows users to automate the process of gathering spec
 
   - Updated Google Sheet:
 
-    ![image](https://github.com/user-attachments/assets/f4214b94-e377-4e0b-90c8-011f66c2a393)
+    ![image](https://github.com/user-attachments/assets/2ca14a4f-bea7-4584-9c06-262491f489e4)
+
 
 3. **Advanced Error Handling**  
    
